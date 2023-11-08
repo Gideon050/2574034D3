@@ -26,5 +26,7 @@ List of files
 4. UK-No-NI-Postcodes.geojson
 5. map.json
 6. 500.json
+7. style.css
+8. d3.v7.min.js
 
 https://github.com/Gideon050/2574034D3.git
