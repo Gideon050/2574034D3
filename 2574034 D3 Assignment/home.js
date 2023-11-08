@@ -47,6 +47,9 @@ d3.json("UK-No-NI-Postcodes.geojson").then(function(ukData) {
     // Initialize the data variable to store the JSON feed data
     let townsData = [];
 
+    // Add a variable to store the selected town data
+    let selectedTown = null;
+
     // Function to load JSON data for towns
     function loadTownsData(numTowns) {
         const apiUrl = `http://34.38.72.236/Circles/Towns/${numTowns}`;
@@ -79,6 +82,9 @@ d3.json("UK-No-NI-Postcodes.geojson").then(function(ukData) {
             .on("mouseover", handleMouseOver)
             .on("mouseout", handleMouseOut)
             .on('click', function (event, d) {
+                // Save the selected town data
+                selectedTown = d;
+                openModal();
                 // Handle click event to highlight the selected town
                 svg.selectAll('circle')
                   .attr('fill', '#ff91af') // Reset color for all circles
@@ -88,6 +94,30 @@ d3.json("UK-No-NI-Postcodes.geojson").then(function(ukData) {
                   .attr('fill', 'red') // Change color for the selected circle
                   .attr('r', 6); // Increase radius for the selected circle
               });
+            
+        // Function to open the modal
+        function openModal() {
+            const modal = document.getElementById("townModal");
+            const modalContent = document.getElementById("modal-content");
+
+            // Display detailed information in the modal
+            modalContent.innerHTML = `
+                <h2>${selectedTown.Town}</h2>
+                <p><strong>County:</strong> ${selectedTown.County}</p>
+                <p><strong>Population:</strong> ${selectedTown.Population}</p>
+            `;
+
+            modal.style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            const modal = document.getElementById("townModal");
+            modal.style.display = "none";
+        }
+
+        // Event binding for the close button
+        document.getElementById("modalCloseBtn").addEventListener("click", closeModal);
 
         // Add text elements with town names
         svg.selectAll("text")
@@ -97,9 +127,11 @@ d3.json("UK-No-NI-Postcodes.geojson").then(function(ukData) {
         .attr("x", d => projection([d.lng, d.lat])[0])
         .attr("y", d => projection([d.lng, d.lat])[1])
         .text(d => d.Town)
+        .attr("color", "black")
         .attr("dy", -10) // Adjust the vertical position of the text
         .attr("text-anchor", "middle") // Center the text horizontally
-        .attr("font-size", "10px"); // Set the font size
+        .attr("font-size", "10px") // Set the font size
+        .style("fill", "#000000"); // Set the text color to black
 
     }
 
