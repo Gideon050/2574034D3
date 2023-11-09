@@ -1,0 +1,25 @@
+# 2574034D3
+Information
+
+This is a D3 script that loads a JSON Feed from a web server, draws a map of UK implementing a geojson file, then plots a list of towns from the json feed. (Alternatively a saved copy of the JSON feed can be used to modify the code when json feed server offline). 
+
+This program draws the map of UK and plots the towns as circles on the map with the longitude and latitude information from the json feed, then displays more information such as the Town name, County name and Population for every town displayed on the map when the mouse hovers on the circle. The maximum number of towns displayed at a time can be modified using a slider. 
+
+To display additional information about a desired town, Click on the highlighted town and a pop up window will show additional information for the town such as the county and population.
+
+The D3 script supports the reload of town clusters which changes the information on the map, displaying a new cluster of towns with every click of the button or with the use of a slider which performs the same action as changing the number of towns displayed and refreshing the town clusters  as it changes.
+
+I have included a javascript (map.js) that loads the json feed onto a table that can be viewed using the Console from the developer tools menu.
+
+List of files
+
+1. home.html
+2. home.js
+3. map.js
+4. UK-No-NI-Postcodes.geojson
+5. map.json
+6. 500.json
+7. style.css
+8. d3.v7.min.js
+
+https://github.com/Gideon050/2574034D3.git
